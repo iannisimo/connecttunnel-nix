@@ -35,13 +35,13 @@ in {
     systemd.services.connect-tunnel = {
       description = "Connect Tunnel VPN client";
       after = [ "network.target" ];
-      # wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "multi-user.target" ];
       preStart = "mkdir -p /root/.sonicwall/AventailConnect/config/ && cp ${cfg.configFile} /root/.sonicwall/AventailConnect/config/profiles.xml";
       preStop = "rm /root/.sonicwall/AventailConnect/config/profiles.xml";
       serviceConfig = {
-        Type = "simple";
+        # Type = "simple";
         ExecStart = "${ct-pkg}/bin/startct -m console";
-        Restart = "Always";
+        # Restart = "Always";
         User = "root";
         Group = "root";
       };
