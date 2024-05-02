@@ -4,7 +4,7 @@
   fetchurl,
   unzip,
   zip,
-  zulu17
+  zulu17,
   which
 }: let 
 
