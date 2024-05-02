@@ -12,7 +12,7 @@ in {
 
     enableService = lib.mkEnableOption "Enable the Connect Tunnel VPN client service";
 
-    configFile = {
+    configFile = lib.mkOption {
       default = "/etc/aventail/aventailconnect";
       type = lib.types.str;
       description = "Path to the configuration file";
