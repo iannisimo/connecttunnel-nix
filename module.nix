@@ -11,7 +11,6 @@ in {
     enable = lib.mkEnableOption "Connect Tunnel VPN client";
 
     enableService = lib.mkEnableOption "Enable the Connect Tunnel VPN client service";
-    autostartService = lib.mkEnableOption "Start the Connect Tunnel VPN client service at boot";
 
     configFile = lib.mkOption {
       default = "/etc/aventail/aventailconnect";
@@ -39,9 +38,9 @@ in {
       preStart = "mkdir -p /root/.sonicwall/AventailConnect/config/ && cp ${cfg.configFile} /root/.sonicwall/AventailConnect/config/profiles.xml";
       preStop = "rm /root/.sonicwall/AventailConnect/config/profiles.xml";
       serviceConfig = {
-        # Type = "simple";
+        Type = "simple";
         ExecStart = "${ct-pkg}/bin/startct -m console";
-        # Restart = "Always";
+        Restart = "Always";
         User = "root";
         Group = "root";
       };
