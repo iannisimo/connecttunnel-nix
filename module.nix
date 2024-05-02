@@ -36,8 +36,8 @@ in {
       description = "Connect Tunnel VPN client";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
-      PreStart = "mkdir -p /root/.sonicwall/AventailConnect/config/ && cp ${cfg.configFile} /root/.sonicwall/AventailConnect/config/profiles.xml";
-      PreStop = "rm /root/.sonicwall/AventailConnect/config/profiles.xml";
+      preStart = "mkdir -p /root/.sonicwall/AventailConnect/config/ && cp ${cfg.configFile} /root/.sonicwall/AventailConnect/config/profiles.xml";
+      preStop = "rm /root/.sonicwall/AventailConnect/config/profiles.xml";
       enable = cfg.autostartService;
       serviceConfig = {
         Type = "simple";
