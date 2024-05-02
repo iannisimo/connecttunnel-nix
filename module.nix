@@ -37,7 +37,7 @@ in {
       preStart = "mkdir -p /root/.sonicwall/AventailConnect/config/ && cp ${cfg.configFile} /root/.sonicwall/AventailConnect/config/profiles.xml";
       preStop = "rm /root/.sonicwall/AventailConnect/config/profiles.xml";
       serviceConfig = {
-        ExecStart = "${ct-pkg}/bin/startct -m console";
+        ExecStart = "${ct-pkg}/bin/startct -m console -y";
         Restart = "always";
         User = "root";
         Group = "root";
