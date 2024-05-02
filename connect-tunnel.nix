@@ -5,6 +5,7 @@
   unzip,
   zip,
   zulu17
+  which
 }: let 
 
   pname = "sonicwall";
@@ -75,14 +76,14 @@ in stdenv.mkDerivation {
         $out/usr/local/Aventail/startct.sh \
         --replace-warn /usr/ $out/usr/ \
         --replace-warn "java -version" "${zulu17}/bin/java -version" \
-        --replace-warn "which java" "which ${zulu17}/bin/java" \
+        --replace-warn "which java" "${which}/bin/which ${zulu17}/bin/java" \
         --replace-warn "java \$XG_DEBUG" "${zulu17}/bin/java $XG_DEBUG"
 
       substituteInPlace \
         $out/usr/local/Aventail/startctui.sh \
         --replace-warn /usr/ $out/usr/ \
         --replace-warn "java -version" "${zulu17}/bin/java -version" \
-        --replace-warn "which java" "which ${zulu17}/bin/java" \
+        --replace-warn "which java" "${which}/bin/which ${zulu17}/bin/java" \
         --replace-warn "java \$XG_DEBUG" "${zulu17}/bin/java $XG_DEBUG"
 
       mkdir -p $out/bin/
