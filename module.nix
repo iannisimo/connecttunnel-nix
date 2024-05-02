@@ -20,7 +20,7 @@ in {
     };
   };
   
-  config = lib.mkIf cfg.enable {
+  config = (lib.mkIf cfg.enable {
 
     environment.systemPackages = [ ct-pkg ];
 
@@ -31,7 +31,7 @@ in {
       source = "${ct-pkg}/usr/local/Aventail/AvConnect";
     };
 
-  } // lib.mkIf cfg.enableService {
+  }) // (lib.mkIf cfg.enableService {
     systemd.services.connect-tunnel = {
       description = "Connect Tunnel VPN client";
       after = [ "network.target" ];
@@ -46,5 +46,5 @@ in {
         Group = "root";
       };
     };
-  };
+  });
 }
